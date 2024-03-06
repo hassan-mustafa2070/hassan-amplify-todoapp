@@ -1,0 +1,36 @@
+.todo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 100%;
+    margin-top: 3%;
+}
+.todo button{
+    height: 30px;
+    width: 100px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(249, 110, 110);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+.titleanddescription{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.titleanddescription span{
+    font-size: 16px;
+    font-weight: 600;
+}
+.titleanddescription p{
+    font-size: 14px;
+    color: rgb(185, 181, 181);
+    width: 80%;
+    line-height: 1.6em;
+}

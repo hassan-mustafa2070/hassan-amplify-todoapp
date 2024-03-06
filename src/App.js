@@ -1,11 +1,10 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-
-function App({signOut}) {
+import Createtodo from "./components/Createtodo/Createtodo"
+function App({signOut,user}) {
   return (
     <div >
-      <h3>Hello</h3>
-      <button onClick={signOut}>signOut</button>
+     <Createtodo signOut={signOut}  user={user} />
     </div>
   );
 }
