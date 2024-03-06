@@ -8,6 +8,7 @@ export const getTodo = /* GraphQL */ `
       title
       description
       createdBy
+      image
       createdAt
       updatedAt
       __typename
@@ -26,6 +27,7 @@ export const listTodos = /* GraphQL */ `
         title
         description
         createdBy
+        image
         createdAt
         updatedAt
         __typename

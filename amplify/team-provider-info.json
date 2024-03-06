@@ -17,6 +17,9 @@
       },
       "api": {
         "hassanamplifytodoapp": {}
+      },
+      "storage": {
+        "hassantodoimages": {}
       }
     }
   }

@@ -11,6 +11,7 @@ export const createTodo = /* GraphQL */ `
       title
       description
       createdBy
+      image
       createdAt
       updatedAt
       __typename
@@ -27,6 +28,7 @@ export const updateTodo = /* GraphQL */ `
       title
       description
       createdBy
+      image
       createdAt
       updatedAt
       __typename
@@ -43,6 +45,7 @@ export const deleteTodo = /* GraphQL */ `
       title
       description
       createdBy
+      image
       createdAt
       updatedAt
       __typename

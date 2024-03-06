@@ -26,23 +26,27 @@ export default function TodoCreateForm(props) {
     title: "",
     description: "",
     createdBy: "",
+    image: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [createdBy, setCreatedBy] = React.useState(initialValues.createdBy);
+  const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setTitle(initialValues.title);
     setDescription(initialValues.description);
     setCreatedBy(initialValues.createdBy);
+    setImage(initialValues.image);
     setErrors({});
   };
   const validations = {
     title: [{ type: "Required" }],
     description: [],
     createdBy: [],
+    image: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -73,6 +77,7 @@ export default function TodoCreateForm(props) {
           title,
           description,
           createdBy,
+          image,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -138,6 +143,7 @@ export default function TodoCreateForm(props) {
               title: value,
               description,
               createdBy,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -164,6 +170,7 @@ export default function TodoCreateForm(props) {
               title,
               description: value,
               createdBy,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -190,6 +197,7 @@ export default function TodoCreateForm(props) {
               title,
               description,
               createdBy: value,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.createdBy ?? value;
@@ -203,6 +211,33 @@ export default function TodoCreateForm(props) {
         errorMessage={errors.createdBy?.errorMessage}
         hasError={errors.createdBy?.hasError}
         {...getOverrideProps(overrides, "createdBy")}
+      ></TextField>
+      <TextField
+        label="Image"
+        isRequired={false}
+        isReadOnly={false}
+        value={image}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              description,
+              createdBy,
+              image: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.image ?? value;
+          }
+          if (errors.image?.hasError) {
+            runValidationTasks("image", value);
+          }
+          setImage(value);
+        }}
+        onBlur={() => runValidationTasks("image", image)}
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        {...getOverrideProps(overrides, "image")}
       ></TextField>
       <Flex
         justifyContent="space-between"

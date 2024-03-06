@@ -7,4 +7,5 @@ type Todo @model {
   title: String!
   description: String
   createdBy: String
+  image: String
 }
