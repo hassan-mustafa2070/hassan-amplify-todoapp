@@ -28,7 +28,13 @@ const Todo = ({ todo, todoList, setTodoList }) => {
         </div>
         <button onClick={() => DeleteTodo(todo?.id)}>Delete</button>
       </div>
-     <img src="https://hassan53119-staging.s3.eu-north-1.amazonaws.com/public/istockphoto-1386446426-612x612.jpg" alt="lala" height={70} width={70}/>
+
+      <img
+        src={`${process.env.REACT_APP_AWS_S3_OBJECT_URL}${todo?.image}`}
+        alt="lala"
+        height={100}
+        width={100}
+      />
     </div>
   );
 };
