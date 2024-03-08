@@ -9,3 +9,10 @@ type Todo @model {
   createdBy: String
   image: String
 }
+
+type TodoUserCount @model {
+  id: ID!
+  userID: String!
+  count: Int
+}
+

@@ -4,8 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as TodoCreateForm } from "./TodoCreateForm";
-export { default as TodoUpdateForm } from "./TodoUpdateForm";
-export { default as TodoUserCountCreateForm } from "./TodoUserCountCreateForm";
-export { default as TodoUserCountUpdateForm } from "./TodoUserCountUpdateForm";
-export { default as studioTheme } from "./studioTheme";
+/* eslint-disable */
+import { createTheme, defaultTheme } from "@aws-amplify/ui-react";
+export default createTheme(defaultTheme);

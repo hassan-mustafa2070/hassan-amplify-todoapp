@@ -43,3 +43,45 @@ export const onDeleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTodoUserCount = /* GraphQL */ `
+  subscription OnCreateTodoUserCount(
+    $filter: ModelSubscriptionTodoUserCountFilterInput
+  ) {
+    onCreateTodoUserCount(filter: $filter) {
+      id
+      userID
+      count
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTodoUserCount = /* GraphQL */ `
+  subscription OnUpdateTodoUserCount(
+    $filter: ModelSubscriptionTodoUserCountFilterInput
+  ) {
+    onUpdateTodoUserCount(filter: $filter) {
+      id
+      userID
+      count
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTodoUserCount = /* GraphQL */ `
+  subscription OnDeleteTodoUserCount(
+    $filter: ModelSubscriptionTodoUserCountFilterInput
+  ) {
+    onDeleteTodoUserCount(filter: $filter) {
+      id
+      userID
+      count
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

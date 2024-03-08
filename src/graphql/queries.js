@@ -37,3 +37,35 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
+export const getTodoUserCount = /* GraphQL */ `
+  query GetTodoUserCount($id: ID!) {
+    getTodoUserCount(id: $id) {
+      id
+      userID
+      count
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listTodoUserCounts = /* GraphQL */ `
+  query ListTodoUserCounts(
+    $filter: ModelTodoUserCountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTodoUserCounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        count
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

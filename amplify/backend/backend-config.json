@@ -45,6 +45,50 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "hassanamplifytodoapp28dfbad4": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "hassanamplifytodoapp"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "hassanamplifytodoapp"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_hassanamplifytodoapp28dfbad4_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hassanamplifytodoapp28dfbad4"
+        }
+      ]
+    },
+    "AMPLIFY_function_hassanamplifytodoapp28dfbad4_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hassanamplifytodoapp28dfbad4"
+        }
+      ]
+    }
+  },
   "storage": {
     "hassantodoimages": {
       "dependsOn": [],

@@ -3,6 +3,7 @@ import "./createtodo.css";
 import Todos from "../Todos/Todos";
 import { PiSignOutBold } from "react-icons/pi";
 import { createTodo } from "../../graphql/mutations";
+import {listTodos} from '../../graphql/queries'
 import { generateClient } from "aws-amplify/api";
 import gql from "graphql-tag";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
@@ -18,7 +19,7 @@ const Createtodo = ({ signOut, user }) => {
   const [showImage, setShowImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
   // const [imagekey, setimagekey] = useState("tree-736885_1280.jpg");
-  const client = generateClient();
+  
 
   useEffect(() => {
     fetchTodos();
@@ -86,7 +87,7 @@ const Createtodo = ({ signOut, user }) => {
       setTodoDescription("");
       setShowImage(null);
       setImage(null);
-      setFileName("");
+      setFileName("No file Selected");
     } catch (err) {
       console.log("Error : ", err);
       console.log("error creating todo:", err);
