@@ -19,7 +19,7 @@ const Createtodo = ({ signOut, user }) => {
   const [showImage, setShowImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
   // const [imagekey, setimagekey] = useState("tree-736885_1280.jpg");
-  
+  const client = generateClient();
 
   useEffect(() => {
     fetchTodos();
