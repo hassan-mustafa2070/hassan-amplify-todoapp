@@ -3,7 +3,6 @@ import "./createtodo.css";
 import Todos from "../Todos/Todos";
 import { PiSignOutBold } from "react-icons/pi";
 import { createTodo } from "../../graphql/mutations";
-import {listTodos} from '../../graphql/queries'
 import { generateClient } from "aws-amplify/api";
 import gql from "graphql-tag";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
@@ -15,16 +14,27 @@ const Createtodo = ({ signOut, user }) => {
   const [todoDescription, setTodoDescription] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
   const [image, setImage] = useState(null);
   const [showImage, setShowImage] = useState(null);
   const [fileName, setFileName] = useState("No file selected");
-  // const [imagekey, setimagekey] = useState("tree-736885_1280.jpg");
+  const [todoscount, settodoscount] = useState(null);
   const client = generateClient();
-  
 
   useEffect(() => {
     fetchTodos();
+   
   }, []);
+
+  useEffect(() => {
+    fetchTodosUserCount();
+  }, [todoList]);
+  
+  
+  useEffect(() => {
+    setIsLoading2(true); 
+    fetchTodosUserCount();
+  }, [todoscount]);
 
   async function fetchTodos() {
     try {
@@ -52,6 +62,29 @@ const Createtodo = ({ signOut, user }) => {
     }
   }
 
+  async function fetchTodosUserCount() {
+    try {
+      setIsLoading2(true);
+      const todoData = await client.graphql({
+        query: gql`
+      query ListTodoUserCounts {
+        listTodoUserCounts(filter: { userID: { eq: "${user.signInDetails.loginId}" } }) {
+          items {
+            count
+          }
+        }
+      }
+    `,
+      });
+      const todos = todoData.data.listTodoUserCounts.items;
+      settodoscount(todos[0].count);
+      setIsLoading2(false);
+    } catch (err) {
+      setIsLoading2(false);
+      console.log("error fetching todos:", err);
+    }
+  }
+
   async function addTodo() {
     try {
       if (!todoTitle && !todoDescription) {
@@ -63,6 +96,7 @@ const Createtodo = ({ signOut, user }) => {
       if (!image) {
         return alert("Please upload image");
       }
+
       const result = await uploadData({
         key: fileName,
         data: image,
@@ -83,7 +117,8 @@ const Createtodo = ({ signOut, user }) => {
           input: newtodo,
         },
       });
-      setTodoList((list) => [...list, { ...newtodo }]);
+
+      setTodoList([...todoList, { ...newtodo }]);
       setTodoTitle("");
       setTodoDescription("");
       setShowImage(null);
@@ -95,6 +130,7 @@ const Createtodo = ({ signOut, user }) => {
     }
   }
   console.log("todolist", todoList);
+  console.log(todoscount)
 
   return (
     <>
@@ -165,6 +201,10 @@ const Createtodo = ({ signOut, user }) => {
             <button className="addbutton" onClick={addTodo}>
               Add
             </button>
+            <div>
+              <span style={{ fontWeight: "700" }}>User Todo Count:</span>{" "}
+              {!isLoading2 && (<span>{todoscount}</span>)}
+            </div>
             {todoList?.length > 0 ? (
               <Todos todoList={todoList} setTodoList={setTodoList} />
             ) : (
